@@ -1,6 +1,5 @@
 package kr.co.bongdamsafety.onlinemap.dto;
 
-import jakarta.persistence.Column;
 import kr.co.bongdamsafety.onlinemap.entity.Request_ToCenter;
 import lombok.AllArgsConstructor;
 import lombok.ToString;

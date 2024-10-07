@@ -1,9 +1,5 @@
 package kr.co.bongdamsafety.onlinemap.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import kr.co.bongdamsafety.onlinemap.entity.Account;
 import kr.co.bongdamsafety.onlinemap.entity.Facility;
 import kr.co.bongdamsafety.onlinemap.entity.Request_Edit;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityRepository;
