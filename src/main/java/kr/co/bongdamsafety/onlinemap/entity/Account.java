@@ -1,8 +1,6 @@
 package kr.co.bongdamsafety.onlinemap.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,10 +16,20 @@ import java.sql.Timestamp;
 public class Account {
     @Id
     private String id;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "char(128)")
     private String password;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 4000)
     private String name;
-    @Column
+    @Column(nullable = false)
+    private int permlevel;
+    @Column(length = 4000)
+    private String content;
+    @Column(nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp date_created;
+    @Column
+    private Timestamp date_edited;
+
+    @ManyToOne
+    @JoinColumn(name = "account_id_created_this", referencedColumnName = "id")
+    private Account account_created_this;
 }
