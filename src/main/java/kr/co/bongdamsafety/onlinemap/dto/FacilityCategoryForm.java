@@ -1,15 +1,15 @@
 package kr.co.bongdamsafety.onlinemap.dto;
 
 import kr.co.bongdamsafety.onlinemap.entity.FacilityCategory;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.sql.Timestamp;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Getter // Getter, Setter 잊지 말자...
+@Setter
 public class FacilityCategoryForm {
     private Long id;
     private String categoryName;
@@ -19,6 +19,6 @@ public class FacilityCategoryForm {
     private Timestamp date_edited;
 
     public FacilityCategory toEntity() {
-        return new FacilityCategory(id, categoryName, visible, note, date_created, date_edited);
+        return new FacilityCategory(id, categoryName, visible, note, null, null);
     }
 }
