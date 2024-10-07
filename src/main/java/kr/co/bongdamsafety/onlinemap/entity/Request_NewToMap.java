@@ -35,7 +35,12 @@ public class Request_NewToMap {
     private String photolink2;
     @Column(length = 4000)
     private String note;
-    @Column(nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+
+    @Column(updatable = false)
     private Timestamp date_requested;
+    @PrePersist
+    public void onCreate() {
+        this.date_requested = new Timestamp(System.currentTimeMillis());
+    }
 
 }

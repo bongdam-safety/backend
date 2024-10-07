@@ -24,10 +24,20 @@ public class Account {
     private int permlevel;
     @Column(length = 4000)
     private String content;
-    @Column(nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+
+    @Column(updatable = false)
     private Timestamp date_created;
+    @PrePersist
+    public void onCreate() {
+        this.date_created = new Timestamp(System.currentTimeMillis());
+    }
+
     @Column
     private Timestamp date_edited;
+    @PreUpdate
+    public void onUpdate() {
+        this.date_edited = new Timestamp(System.currentTimeMillis());
+    }
 
     @ManyToOne
     @JoinColumn(name = "account_id_created_this", referencedColumnName = "id")

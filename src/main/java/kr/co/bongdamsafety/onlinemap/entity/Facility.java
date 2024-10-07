@@ -37,14 +37,25 @@ public class Facility {
     private String photolink2;
     @Column(length = 4000)
     private String note_for_manager;
+
     @Column
     private Timestamp date_requested_new;
-    @Column(nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Timestamp date_created;
     @Column
     private Timestamp date_requested_edit;
+
+    @Column(updatable = false)
+    private Timestamp date_created;
+    @PrePersist
+    public void onCreate() {
+        this.date_created = new Timestamp(System.currentTimeMillis());
+    }
+
     @Column
     private Timestamp date_edited;
+    @PreUpdate
+    public void onUpdate() {
+        this.date_edited = new Timestamp(System.currentTimeMillis());
+    }
 
     @ManyToOne
     @JoinColumn(name = "account_id_agreed_new", referencedColumnName = "id")

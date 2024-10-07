@@ -30,7 +30,12 @@ public class Request_ToCenter {
     private String title;
     @Column(nullable = false, length = 4000)
     private String content;
-    @Column(nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+
+    @Column(updatable = false)
     private Timestamp date_requested;
+    @PrePersist
+    public void onCreate() {
+        this.date_requested = new Timestamp(System.currentTimeMillis());
+    }
 
 }
