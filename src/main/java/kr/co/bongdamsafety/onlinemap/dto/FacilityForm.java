@@ -1,15 +1,12 @@
 package kr.co.bongdamsafety.onlinemap.dto;
 
-import jakarta.persistence.Column;
 import kr.co.bongdamsafety.onlinemap.entity.Account;
 import kr.co.bongdamsafety.onlinemap.entity.Facility;
 import kr.co.bongdamsafety.onlinemap.entity.FacilityCategory;
 import kr.co.bongdamsafety.onlinemap.repository.AccountRepository;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityCategoryRepository;
-import kr.co.bongdamsafety.onlinemap.repository.FacilityRepository;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
-import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 
@@ -24,7 +21,10 @@ public class FacilityForm {
     private String content;
     private String photolink1;
     private String photolink2;
+    private String note_for_manager;
+    private Timestamp date_requested_new;
     private Timestamp date_created;
+    private Timestamp date_requested_edit;
     private Timestamp date_edited;
     private String account_id_agreed_new;
     private String account_id_agreed_edit;
@@ -42,9 +42,9 @@ public class FacilityForm {
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 수정계정입니다: " + account_id_agreed_new));
 
 
-        return new Facility(id, facilityCategory,
-                latitude, longitude, address, content,
-                photolink1, photolink2, date_created, date_edited,
+        return new Facility(id, facilityCategory, latitude, longitude,
+                 address, content, photolink1, photolink2, note_for_manager,
+                date_requested_new, date_created, date_requested_new, date_edited,
                 account_agreed_new, account_agreed_edit);
 
     }
