@@ -23,19 +23,19 @@ public class Request_NewToMap {
     @JoinColumn(name = "facilityCategoryId", referencedColumnName = "id")
     private FacilityCategory facilityCategory;
 
-    @Column
+    @Column(length = 4000)
     private String content;
     @Column (nullable=false)
     private double latitude;
     @Column (nullable=false)
     private double longitude;
-    @Column
+    @Column(length = 4000)
     private String photolink1;
-    @Column
+    @Column(length = 4000)
     private String photolink2;
-    @Column
+    @Column(length = 4000)
     private String note;
-    @Column
+    @Column(nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp date_requested;
 
 }
