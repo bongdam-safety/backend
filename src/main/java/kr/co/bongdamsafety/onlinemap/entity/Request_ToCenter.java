@@ -18,19 +18,19 @@ public class Request_ToCenter {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "request_tocenter_seq_gen")
     @SequenceGenerator(name = "request_tocenter_seq_gen", sequenceName = "request_tocenter_seq", allocationSize = 1)
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 4000)
     private String requester_name;
-    @Column
+    @Column(length = 4000)
     private String requester_contact;
     @Column
     private double latitude;
     @Column
     private double longitude;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 4000)
     private String title;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 4000)
     private String content;
-    @Column
+    @Column(nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp date_requested;
 
 }
