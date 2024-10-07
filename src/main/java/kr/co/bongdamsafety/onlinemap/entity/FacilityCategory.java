@@ -24,12 +24,20 @@ public class FacilityCategory {
     private boolean visible;
     @Column(length = 4000)
     private String note;
-    @Column(nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+
+    @Column(updatable = false)
     private Timestamp date_created;
+    @PrePersist
+    public void onCreate() {
+        this.date_created = new Timestamp(System.currentTimeMillis());
+    }
+
     @Column
     private Timestamp date_edited;
-
-    public void patch(FacilityCategory category) {
-        this.categoryName = category.categoryName;
+    @PreUpdate
+    public void onUpdate() {
+        this.date_edited = new Timestamp(System.currentTimeMillis());
     }
+
+
 }
