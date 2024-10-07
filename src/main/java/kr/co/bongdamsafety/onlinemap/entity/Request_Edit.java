@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,17 +23,17 @@ public class Request_Edit {
     @JoinColumn(name = "facilityId", referencedColumnName = "id")
     private Facility facility;
 
-    @Column
+    @Column(length = 4000)
     private String content;
     @Column
     private double latitude;
     @Column
     private double longitude;
-    @Column
+    @Column(length = 4000)
     private String photolink1;
-    @Column
+    @Column(length = 4000)
     private String photolink2;
-    @Column
+    @Column(nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp date_requested;
 
 }
