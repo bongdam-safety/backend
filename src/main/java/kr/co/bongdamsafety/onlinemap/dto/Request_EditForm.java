@@ -3,13 +3,15 @@ package kr.co.bongdamsafety.onlinemap.dto;
 import kr.co.bongdamsafety.onlinemap.entity.Facility;
 import kr.co.bongdamsafety.onlinemap.entity.Request_Edit;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityRepository;
-import lombok.AllArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.sql.Timestamp;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Getter // Getter, Setter 잊지 말자...
+@Setter
 public class Request_EditForm {
     private Long id;
     private Long facilityId;

@@ -1,13 +1,15 @@
 package kr.co.bongdamsafety.onlinemap.dto;
 
 import kr.co.bongdamsafety.onlinemap.entity.Request_ToCenter;
-import lombok.AllArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.sql.Timestamp;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Getter // Getter, Setter 잊지 말자...
+@Setter
 public class Request_ToCenterForm {
     private Long id;
     private String requester_name;

@@ -5,13 +5,15 @@ import kr.co.bongdamsafety.onlinemap.entity.Facility;
 import kr.co.bongdamsafety.onlinemap.entity.FacilityCategory;
 import kr.co.bongdamsafety.onlinemap.repository.AccountRepository;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityCategoryRepository;
-import lombok.AllArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.sql.Timestamp;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Getter // Getter, Setter 잊지 말자...
+@Setter
 public class FacilityForm {
     private Long id;
     private Long facilityCategoryId; // 외래 키

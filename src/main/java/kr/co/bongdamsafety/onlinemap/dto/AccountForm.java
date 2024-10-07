@@ -2,13 +2,15 @@ package kr.co.bongdamsafety.onlinemap.dto;
 
 import kr.co.bongdamsafety.onlinemap.entity.Account;
 import kr.co.bongdamsafety.onlinemap.repository.AccountRepository;
-import lombok.AllArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.sql.Timestamp;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Getter // Getter, Setter 잊지 말자...
+@Setter
 public class AccountForm {
     private String id;
     private String password;
