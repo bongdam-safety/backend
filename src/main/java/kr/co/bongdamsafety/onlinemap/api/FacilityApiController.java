@@ -1,9 +1,7 @@
 package kr.co.bongdamsafety.onlinemap.api;
 
-import kr.co.bongdamsafety.onlinemap.dto.FacilityCategoryForm;
 import kr.co.bongdamsafety.onlinemap.dto.FacilityForm;
 import kr.co.bongdamsafety.onlinemap.entity.Facility;
-import kr.co.bongdamsafety.onlinemap.entity.FacilityCategory;
 import kr.co.bongdamsafety.onlinemap.repository.AccountRepository;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityCategoryRepository;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityRepository;
