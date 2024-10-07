@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,16 +27,22 @@ public class Facility {
     private double latitude;
     @Column(nullable = false)
     private double longitude;
-    @Column
+    @Column(length = 4000)
     private String address;
-    @Column
+    @Column(length = 4000)
     private String content;
-    @Column
+    @Column(length = 4000)
     private String photolink1;
-    @Column
+    @Column(length = 4000)
     private String photolink2;
+    @Column(length = 4000)
+    private String note_for_manager;
     @Column
+    private Timestamp date_requested_new;
+    @Column(nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp date_created;
+    @Column
+    private Timestamp date_requested_edit;
     @Column
     private Timestamp date_edited;
 
