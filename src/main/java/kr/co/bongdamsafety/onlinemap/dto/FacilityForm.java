@@ -25,8 +25,8 @@ public class FacilityForm {
     private String photolink2;
     private String note_for_manager;
     private Timestamp date_requested_new;
-    private Timestamp date_created;
     private Timestamp date_requested_edit;
+    private Timestamp date_created;
     private Timestamp date_edited;
     private String account_id_agreed_new;
     private String account_id_agreed_edit;
@@ -37,16 +37,22 @@ public class FacilityForm {
         FacilityCategory facilityCategory = facilityCategoryRepository.findById(facilityCategoryId)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 시설물 분류번호입니다: " + facilityCategoryId));
 
-        Account account_agreed_new = accountRepository_new.findById(account_id_agreed_new)
-                .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 생성계정입니다: " + account_id_agreed_new));
+        Account account_agreed_new = null;
+        if (account_id_agreed_new != null) {
+            account_agreed_new = accountRepository_new.findById(account_id_agreed_new)
+                    .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 생성계정입니다: " + account_id_agreed_new));
+        }
 
-        Account account_agreed_edit = accountRepository_edit.findById(account_id_agreed_edit)
-                .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 수정계정입니다: " + account_id_agreed_new));
+        Account account_agreed_edit = null;
+        if (account_id_agreed_edit != null) {
+            account_agreed_edit = accountRepository_edit.findById(account_id_agreed_edit)
+                    .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 수정계정입니다: " + account_id_agreed_edit));
+        }
 
 
         return new Facility(id, facilityCategory, latitude, longitude,
                  address, content, photolink1, photolink2, note_for_manager,
-                date_requested_new, date_created, date_requested_new, date_edited,
+                date_requested_new, date_requested_edit, null, null,
                 account_agreed_new, account_agreed_edit);
 
     }
