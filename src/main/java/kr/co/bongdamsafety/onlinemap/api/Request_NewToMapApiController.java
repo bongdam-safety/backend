@@ -12,7 +12,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-public class Request_NewToMapController {
+public class Request_NewToMapApiController {
     @Autowired
     Request_NewToMapRepository request_NewToMapRepository;
     @Autowired

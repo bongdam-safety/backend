@@ -11,7 +11,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-public class Request_ToCenterController {
+public class Request_ToCenterApiController {
     @Autowired
     Request_ToCenterRepository request_ToCenterRepository;
 
