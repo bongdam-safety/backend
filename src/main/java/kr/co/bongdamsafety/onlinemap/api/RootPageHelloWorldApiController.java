@@ -1,15 +1,20 @@
 package kr.co.bongdamsafety.onlinemap.api;
 
+import kr.co.bongdamsafety.onlinemap.service.RootPageHelloWorldService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
 public class RootPageHelloWorldApiController {
+    @Autowired
+    private RootPageHelloWorldService rootPageHelloWorldService;
+
     // GET
     @GetMapping("/")
     public String index() {
-        return "Hello world!";
+        return rootPageHelloWorldService.helloWorld();
     }
 }
