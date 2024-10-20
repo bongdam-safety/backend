@@ -18,19 +18,19 @@ public class AccountApiController {
     // **** 아래의 모든 것은 로그인되고 승인된 관리자만 수행 가능하도록 해야함 ****
 
     // GET
-    @GetMapping("/api/account")
+    @GetMapping("/api/account") // 모든 계정 정보 조회
     public List<Account> index(){
         return accountService.findAll();
     }
 
     // GET - 단일 사용자 조회
-    @GetMapping("/api/account/{id}")
+    @GetMapping("/api/account/{id}") // 특정 id의 계정 정보 조회
     public Account show(@PathVariable String id){
         return accountService.findById(id);
     }
 
     // POST
-    @PostMapping("api/account")
+    @PostMapping("api/account") // 신규 계정 생성
     public Account create(@RequestBody AccountForm dto){
         return accountService.create(dto);
     }

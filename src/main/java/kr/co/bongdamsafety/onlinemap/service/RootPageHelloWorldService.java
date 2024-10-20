@@ -5,6 +5,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class RootPageHelloWorldService {
     public String helloWorld() {
-        return "Hello world!";
+        return "Hello world!"; // Hello world! 반환
     }
 }

@@ -16,19 +16,20 @@ public class FacilityCategoryApiController {
     private FacilityCategoryService facilityCategoryService;
 
     // GET
-    @GetMapping("/api/facilityCategory")
+    @GetMapping("/api/facilityCategory") // 모든 시설물 분류 정보 조회
     public List<FacilityCategory> index() {
         return facilityCategoryService.findAll();
     }
 
     // GET - 단일 카테고리
-    @GetMapping("/api/facilityCategory/{id}")
-    public FacilityCategory show(@PathVariable Long id) { // pathvariable -> url의 id를 매개변수로 갖고오기
+    @GetMapping("/api/facilityCategory/{id}") // 특정 id의 시설물 분류 정보 조회
+    public FacilityCategory show(@PathVariable Long id) {
+        // pathvariable -> url의 id를 매개변수로 갖고오기
         return facilityCategoryService.findById(id);
     }
 
     // POST **** 관리자만 추가 가능하도록 해야함 ****
-    @PostMapping("api/facilityCategory")
+    @PostMapping("api/facilityCategory") // 새로운 분류 생성
     public FacilityCategory create(@RequestBody FacilityCategoryForm dto) { // requestbody -> 요청시 본문(body)에 실어보내는 데이터를 create 메서드의 매개변수로 받아올수 있게함
         return facilityCategoryService.create(dto);
     }

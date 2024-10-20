@@ -14,28 +14,28 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 public class Request_ToCenter {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "request_tocenter_seq_gen")
-    @SequenceGenerator(name = "request_tocenter_seq_gen", sequenceName = "request_tocenter_seq", allocationSize = 1)
-    private Long id;
+    @Id // 기본키
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "request_tocenter_seq_gen") // 1부터 차례대로
+    @SequenceGenerator(name = "request_tocenter_seq_gen", sequenceName = "request_tocenter_seq", allocationSize = 1) // 1씩 증가
+    private Long id; // 요청번호
     @Column(nullable = false, length = 4000)
-    private String requester_name;
+    private String requester_name; // 요청자명
     @Column(length = 4000)
-    private String requester_contact;
+    private String requester_contact; // 요청자 연락처
     @Column
-    private double latitude;
+    private double latitude; // 위도
     @Column
-    private double longitude;
+    private double longitude; // 경도
     @Column(nullable = false, length = 4000)
-    private String title;
+    private String title; // 요청 제목
     @Column(nullable = false, length = 4000)
-    private String content;
+    private String content; // 요청 내용
 
     @Column(updatable = false)
-    private Timestamp date_requested;
-    @PrePersist
+    private Timestamp date_requested; // 요청일
+    @PrePersist // 저장하기 전에 실행
     public void onCreate() {
-        this.date_requested = new Timestamp(System.currentTimeMillis());
+        this.date_requested = new Timestamp(System.currentTimeMillis()); // 요청일 자동생성
     }
 
 }

@@ -11,16 +11,17 @@ import java.sql.Timestamp;
 @Getter // Getter, Setter 잊지 말자...
 @Setter
 public class Request_ToCenterForm {
-    private Long id;
-    private String requester_name;
-    private String requester_contact;
-    private double latitude;
-    private double longitude;
-    private String title;
-    private String content;
-    private Timestamp date_requested;
+    private Long id; // 요청 번호
+    private String requester_name; // 요청자 이름
+    private String requester_contact; // 요청자 연락처
+    private double latitude; // 위도
+    private double longitude; // 경도
+    private String title; // 요청 제목
+    private String content; // 요청 내용
+    private Timestamp date_requested; // 요청일자
 
-    public Request_ToCenter toEntity() {
+    public Request_ToCenter toEntity() { // DTO(데이터 전송 객체)를 Entity(데이터베이스 객체)로 변환
         return new Request_ToCenter(id, requester_name, requester_contact, latitude, longitude, title, content, date_requested);
+        // Entity 객체 생성 후 요청 정보 반환
     }
 }

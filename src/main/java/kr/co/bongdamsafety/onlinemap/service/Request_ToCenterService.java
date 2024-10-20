@@ -11,17 +11,17 @@ import java.util.List;
 @Service
 public class Request_ToCenterService {
     @Autowired
-    private Request_ToCenterRepository request_ToCenterRepository;
+    private Request_ToCenterRepository request_ToCenterRepository; // 센터에 요청하는 정보 리포지토리
 
     public List<Request_ToCenter> findAll() {
-        return request_ToCenterRepository.findAll();
+        return request_ToCenterRepository.findAll(); // 모든 요청정보 불러오기
     }
 
     public Request_ToCenter findById(Long id) {
-        return request_ToCenterRepository.findById(id).orElse(null);
+        return request_ToCenterRepository.findById(id).orElse(null); // id를 받아 해당하는 요청정보 불러오기
     }
 
-    public Request_ToCenter create(Request_ToCenterForm dto) {
+    public Request_ToCenter create(Request_ToCenterForm dto) { // 센터로 한 요청 저장
         Request_ToCenter request_ToCenter = dto.toEntity();
         return request_ToCenterRepository.save(request_ToCenter);
     }

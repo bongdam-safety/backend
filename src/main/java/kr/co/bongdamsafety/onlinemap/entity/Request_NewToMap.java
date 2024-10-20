@@ -14,10 +14,10 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 public class Request_NewToMap {
-    @Id
+    @Id // 기본키
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "request_newtomap_seq_gen")
     @SequenceGenerator(name = "request_newtomap_seq_gen", sequenceName = "request_newtomap_seq", allocationSize = 1)
-    private Long id;
+    private Long id; // 요청번호
 
     @ManyToOne
     @JoinColumn(name = "facilityCategoryId", referencedColumnName = "id")
@@ -36,11 +36,11 @@ public class Request_NewToMap {
     @Column(length = 4000)
     private String note;
 
-    @Column(updatable = false)
-    private Timestamp date_requested;
-    @PrePersist
+    @Column(updatable = false) // 변경 불가
+    private Timestamp date_requested; // 요청일
+    @PrePersist // 저장하기 전에 실행
     public void onCreate() {
-        this.date_requested = new Timestamp(System.currentTimeMillis());
+        this.date_requested = new Timestamp(System.currentTimeMillis()); // 요청일 자동생성
     }
 
 }
