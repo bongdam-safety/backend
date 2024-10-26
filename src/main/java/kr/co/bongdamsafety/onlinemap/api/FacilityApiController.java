@@ -29,7 +29,7 @@ public class FacilityApiController {
 
     // POST **** 관리자만 추가 가능하도록 해야함 ****
     @PostMapping("api/facility") // 신규 시설물 지도에 생성
-    public Facility create(@RequestBody FacilityForm dto) { // requestbody -> 요청시 본문(body)에 실어보내는 데이터를 create 메서드의 매개변수로 받아올수 있게함
+    public Facility create(@ModelAttribute FacilityForm dto) { // requestbody -> 요청시 본문(body)에 실어보내는 데이터를 create 메서드의 매개변수로 받아올수 있게함
         return facilityService.create(dto);
     }
 }
