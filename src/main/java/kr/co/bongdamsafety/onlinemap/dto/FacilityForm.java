@@ -6,14 +6,17 @@ import kr.co.bongdamsafety.onlinemap.entity.FacilityCategory;
 import kr.co.bongdamsafety.onlinemap.repository.AccountRepository;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityCategoryRepository;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @Getter // Getter, Setter 잊지 말자...
 @Setter
+@Data
 public class FacilityForm {
     private Long id; // 시설물 번호
     private Long facilityCategoryId; // 외래 키
@@ -21,8 +24,7 @@ public class FacilityForm {
     private double longitude; // 경도
     private String address; // 주소
     private String content; // 설명
-    private String photolink1; // 사진 링크1
-    private String photolink2; // 사진 링크2
+    List<MultipartFile> images; // 사진
     private String note_for_manager; // 관리자만 확인 가능한 메모
     private Timestamp date_requested_new; // 신규 요청일
     private Timestamp date_requested_edit; // 정보수정 요청일
@@ -55,8 +57,8 @@ public class FacilityForm {
 
 
         return new Facility(id, facilityCategory, latitude, longitude,
-                 address, content, photolink1, photolink2, note_for_manager,
-                date_requested_new, date_requested_edit, null, null,
+                 address, content, null, note_for_manager,
+                null, null,
                 account_agreed_new, account_agreed_edit);
         // Entity 객체 생성 후 시설물 정보 반환
 
