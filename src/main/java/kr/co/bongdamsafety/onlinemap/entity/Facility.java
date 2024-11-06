@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,17 +32,18 @@ public class Facility {
     private String address; // 주소
     @Column(length = 4000)
     private String content; // 시설물 설명
-    @Column(length = 4000)
-    private String photolink1; // 사진 링크1
-    @Column(length = 4000)
-    private String photolink2; // 사진 링크2
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> imageUrls;
+    public List<String> getImageUrls() {
+        return imageUrls;
+    }
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
+    }
+
     @Column(length = 4000)
     private String note_for_manager; // 관리자만 볼 수 있는 메모
-
-    @Column
-    private Timestamp date_requested_new; // 시설물 추가요청일
-    @Column
-    private Timestamp date_requested_edit; // 시설믈 수정요청일
 
     @Column(updatable = false)
     private Timestamp date_created; // 시설물 생성일
@@ -63,4 +65,6 @@ public class Facility {
     @ManyToOne
     @JoinColumn(name = "account_id_agreed_edit", referencedColumnName = "id")
     private Account account_agreed_edit; // 시설물 장보수정요청 승인한 관리자
+
+
 }

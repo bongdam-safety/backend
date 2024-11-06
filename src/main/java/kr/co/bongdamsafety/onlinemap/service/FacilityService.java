@@ -1,13 +1,19 @@
 package kr.co.bongdamsafety.onlinemap.service;
 
+import jakarta.annotation.PostConstruct;
 import kr.co.bongdamsafety.onlinemap.dto.FacilityForm;
 import kr.co.bongdamsafety.onlinemap.entity.Facility;
+import kr.co.bongdamsafety.onlinemap.entity.FacilityCategory;
 import kr.co.bongdamsafety.onlinemap.repository.AccountRepository;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityCategoryRepository;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,8 +35,50 @@ public class FacilityService {
         return facilityRepository.findById(id).orElse(null); // id를 받아 해당하는 시설물 정보 불러오기
     }
 
+    public List<Facility> findByCategory(Long id) { // 카테고리 아이디로 해당 카테고리에 해당하는 시설물 정보 불러오기
+        FacilityCategory facilityCategory = facilityCategoryRepository.findById(id).orElse(null);
+        if(facilityCategory != null) {
+            return facilityRepository.findByFacilityCategory(facilityCategory); // 카테고리에 해당하는 시설물 목록 반환
+        }
+        return new ArrayList<>(); // 없는 카테고리일 경우 빈 리스트 리턴
+    }
+
+    private static final String UPLOAD_DIR = "D:/github/backend/src/main/resources/static/upload/images";
+    private static final String RELATIVE_UPLOAD_DIR = "/static/upload/images";
+
+    @PostConstruct
+    public void init() {
+        File uploadDir = new File(UPLOAD_DIR);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+    }
+
     public Facility create(FacilityForm dto) { // 신규 시설물 생성
         Facility facility = dto.toEntity(facilityCategoryRepository, accountRepository_new, accountRepository_edit);
+
+        List<String> imageUrls = new ArrayList<>();
+        for (MultipartFile file : dto.getImages()) {
+            if(!file.isEmpty()) {
+                String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+                File dest = new File(UPLOAD_DIR + "/" + fileName);
+                try {
+                    file.transferTo(dest);
+                    imageUrls.add(RELATIVE_UPLOAD_DIR + "/" + fileName);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        facility.setImageUrls(imageUrls);
         return facilityRepository.save(facility);
     }
+
+//    @PostConstruct
+//    public void init() {
+//        File uploadDir = new File("/upload/images");
+//        if (!uploadDir.exists()) {
+//            uploadDir.mkdirs();
+//        }
+//    }
 }
