@@ -29,7 +29,7 @@ public class Request_NewToMapApiController {
 
     // POST
     @PostMapping("api/request_NewToMap") // 신규시설물 지도에 추가요청 접수 및 데이터베이스에 저장
-    public Request_NewToMap create(@RequestBody Request_NewToMapForm dto){
+    public Request_NewToMap create(@ModelAttribute Request_NewToMapForm dto){
         return request_NewToMapService.create(dto);
     }
 

@@ -38,4 +38,10 @@ public class FacilityApiController {
     public Facility create(@ModelAttribute FacilityForm dto) { // requestbody -> 요청시 본문(body)에 실어보내는 데이터를 create 메서드의 매개변수로 받아올수 있게함
         return facilityService.create(dto);
     }
+
+    // POST - 신규 요청 들어운 시설물 승인 **** 관리자만 승인 가능하도록 해야함 ****
+    @PostMapping("api/facility/from_newtomap/{NewToMapId}") // 신규 요청 들어온 시설물 지도에 추가
+    public Facility create(@PathVariable Long NewToMapId) { // pathvariable -> url의 id를 매개변수로 갖고오기
+        return facilityService.createByNewToMapId(NewToMapId);
+    }
 }

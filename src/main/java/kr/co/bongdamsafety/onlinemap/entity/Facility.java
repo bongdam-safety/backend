@@ -1,10 +1,7 @@
 package kr.co.bongdamsafety.onlinemap.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -14,6 +11,7 @@ import java.util.List;
 @ToString
 @Entity
 @Getter
+@Setter
 public class Facility {
     @Id // 기본키
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "facility_seq_gen") // 1부터 차례대로

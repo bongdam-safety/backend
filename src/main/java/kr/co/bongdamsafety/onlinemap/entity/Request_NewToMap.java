@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,18 +22,27 @@ public class Request_NewToMap {
 
     @ManyToOne
     @JoinColumn(name = "facilityCategoryId", referencedColumnName = "id")
-    private FacilityCategory facilityCategory;
+    private FacilityCategory facilityCategory; // 시설물 분류(예: CCTV, 비상벨)
 
     @Column(length = 4000)
-    private String content;
+    private String content; // 요청내용
     @Column (nullable=false)
-    private double latitude;
+    private double latitude; // 위도
     @Column (nullable=false)
-    private double longitude;
-    @Column(length = 4000)
-    private String photolink1;
-    @Column(length = 4000)
-    private String photolink2;
+    private double longitude; // 경도
+//    @Column(length = 4000)
+//    private String photolink1;
+//    @Column(length = 4000)
+//    private String photolink2;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> imageUrls;
+    public List<String> getImageUrls() {
+        return imageUrls;
+    }
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
+    }
+
     @Column(length = 4000)
     private String note;
 
