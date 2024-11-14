@@ -4,8 +4,10 @@ import kr.co.bongdamsafety.onlinemap.entity.Facility;
 import kr.co.bongdamsafety.onlinemap.entity.Request_Edit;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityRepository;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,8 +20,9 @@ public class Request_EditForm {
     private String content; // 요청 내용
     private double latitude; // 위도
     private double longitude; // 경도
-    private String photolink1; // 사진 링크1
-    private String photolink2; // 사진 링크2
+//    private String photolink1; // 사진 링크1
+//    private String photolink2; // 사진 링크2
+    List<MultipartFile> images; // 사진
     private Timestamp date_requested; // 요청일자
 
     public Request_Edit toEntity(FacilityRepository facilityRepository) {
@@ -28,7 +31,7 @@ public class Request_EditForm {
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 시설물 번호입니다. 입력된 번호: " + facilityId));
         // id를 통해 시설물 찾기. 만약 없을 경우 예외처리
 
-        return new Request_Edit(id, facility, content, latitude, longitude, photolink1, photolink2, date_requested);
+        return new Request_Edit(id, facility, content, latitude, longitude, null, null);
         // Entity 객체 생성 후 요청 정보 반환
     }
 }

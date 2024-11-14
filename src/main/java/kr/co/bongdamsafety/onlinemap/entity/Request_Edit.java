@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,10 +30,15 @@ public class Request_Edit {
     private double latitude; // 위도
     @Column
     private double longitude; // 경도
-    @Column(length = 4000)
-    private String photolink1; // 사진 링크1
-    @Column(length = 4000)
-    private String photolink2; // 사진 링크2
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> imageUrls;
+    public List<String> getImageUrls() {
+        return imageUrls;
+    }
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
+    }
 
     @Column(updatable = false)
     private Timestamp date_requested; // 요청일

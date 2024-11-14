@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,6 +31,15 @@ public class Request_ToCenter {
     private String title; // 요청 제목
     @Column(nullable = false, length = 4000)
     private String content; // 요청 내용
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> imageUrls;
+    public List<String> getImageUrls() {
+        return imageUrls;
+    }
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
+    }
 
     @Column(updatable = false)
     private Timestamp date_requested; // 요청일
