@@ -5,6 +5,7 @@ import kr.co.bongdamsafety.onlinemap.entity.Request_Edit;
 import kr.co.bongdamsafety.onlinemap.service.Request_EditService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,14 @@ public class Request_EditApiController {
 
     // POST
     @PostMapping("api/request_Edit") // 수정요청 생성
-    public Request_Edit create(@RequestBody Request_EditForm dto) { // requestbody -> 요청시 본문(body)에 실어보내는 데이터를 create 메서드의 매개변수로 받아올수 있게함
+    public Request_Edit create(@ModelAttribute Request_EditForm dto) {
+        // modelattribute : html의 form 태그로 전송된 데이터 받아옴
         return request_EditService.create(dto);
+    }
+
+    // DELETE
+    @DeleteMapping("api/request_Edit/{id}")
+    public ResponseEntity<Request_Edit> delete(@PathVariable Long id) {
+        return request_EditService.delete(id);
     }
 }

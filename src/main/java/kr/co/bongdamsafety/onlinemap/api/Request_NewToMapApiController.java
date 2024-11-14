@@ -5,6 +5,7 @@ import kr.co.bongdamsafety.onlinemap.entity.Request_NewToMap;
 import kr.co.bongdamsafety.onlinemap.service.Request_NewToMapService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +32,12 @@ public class Request_NewToMapApiController {
     @PostMapping("api/request_NewToMap") // 신규시설물 지도에 추가요청 접수 및 데이터베이스에 저장
     public Request_NewToMap create(@ModelAttribute Request_NewToMapForm dto){
         return request_NewToMapService.create(dto);
+    }
+
+    // DELETE
+    @DeleteMapping("api/request_NewToMap/{id}")
+    public ResponseEntity<Request_NewToMap> delete(@PathVariable Long id) {
+        return request_NewToMapService.delete(id);
     }
 
 }

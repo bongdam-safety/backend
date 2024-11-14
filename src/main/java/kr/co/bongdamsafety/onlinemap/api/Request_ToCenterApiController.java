@@ -5,6 +5,7 @@ import kr.co.bongdamsafety.onlinemap.entity.Request_ToCenter;
 import kr.co.bongdamsafety.onlinemap.service.Request_ToCenterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,13 @@ public class Request_ToCenterApiController {
 
     // POST
     @PostMapping("api/request_ToCenter") // 센터에 요청 생성
-    public Request_ToCenter create(@RequestBody Request_ToCenterForm dto) {
+    public Request_ToCenter create(@ModelAttribute Request_ToCenterForm dto) {
         return request_ToCenterService.create(dto);
+    }
+
+    // DELETE
+    @DeleteMapping("api/request_ToCenter/{id}")
+    public ResponseEntity<Request_ToCenter> delete(@PathVariable Long id) {
+        return request_ToCenterService.delete(id);
     }
 }
