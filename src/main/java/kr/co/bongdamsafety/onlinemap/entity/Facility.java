@@ -64,5 +64,23 @@ public class Facility {
     @JoinColumn(name = "account_id_agreed_edit", referencedColumnName = "id")
     private Account account_agreed_edit; // 시설물 장보수정요청 승인한 관리자
 
+    public void patch(Facility facility) { // 기존 데이터에 새 데이터 붙이기 (api)
+        if (facility.facilityCategory != null)
+            this.facilityCategory = facility.facilityCategory;
+        if (facility.latitude != 0)
+            this.latitude = facility.latitude;
+        if (facility.longitude != 0)
+            this.longitude = facility.longitude;
+        if (facility.address != null)
+            this.address = facility.address;
+        if (facility.content != null)
+            this.content = facility.content;
+        if (facility.imageUrls != null)
+            this.imageUrls = facility.imageUrls;
+        this.date_edited = new Timestamp(System.currentTimeMillis());
+        if (facility.account_agreed_edit != null)
+            this.account_agreed_edit = facility.account_agreed_edit;
+    }
+
 
 }
