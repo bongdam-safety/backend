@@ -6,6 +6,8 @@ import kr.co.bongdamsafety.onlinemap.entity.Request_NewToMap;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityCategoryRepository;
 import kr.co.bongdamsafety.onlinemap.repository.Request_NewToMapRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -57,5 +59,16 @@ public class Request_NewToMapService {
         }
         request_NewToMap.setImageUrls(imageUrls); // 저장된 이미지 주소들을 요청 엔티티 객체에 저장. 안하면 null로 표시된다!
         return request_NewToMapRepository.save(request_NewToMap);
+    }
+
+    public ResponseEntity<Request_NewToMap> delete(Long id) {
+        Request_NewToMap target = request_NewToMapRepository.findById(id).orElse(null);
+
+        if (target == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
+        request_NewToMapRepository.delete(target);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
