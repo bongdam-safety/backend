@@ -5,6 +5,7 @@ import kr.co.bongdamsafety.onlinemap.entity.Facility;
 import kr.co.bongdamsafety.onlinemap.service.FacilityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,5 +44,17 @@ public class FacilityApiController {
     @PostMapping("api/facility/from_newtomap/{NewToMapId}") // 신규 요청 들어온 시설물 지도에 추가
     public Facility create(@PathVariable Long NewToMapId) { // pathvariable -> url의 id를 매개변수로 갖고오기
         return facilityService.createByNewToMapId(NewToMapId);
+    }
+
+    // PATCH
+    @PatchMapping("api/facility/{id}")
+    public ResponseEntity<Facility> update(@PathVariable Long id, @ModelAttribute FacilityForm dto) {
+        return facilityService.update(id, dto);
+    }
+
+    // DELETE
+    @DeleteMapping("api/facility/{id}")
+    public ResponseEntity<Facility> delete(@PathVariable Long id) {
+        return facilityService.delete(id);
     }
 }
