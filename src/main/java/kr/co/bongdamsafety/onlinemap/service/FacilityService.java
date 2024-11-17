@@ -4,11 +4,9 @@ import jakarta.annotation.PostConstruct;
 import kr.co.bongdamsafety.onlinemap.dto.FacilityForm;
 import kr.co.bongdamsafety.onlinemap.entity.Facility;
 import kr.co.bongdamsafety.onlinemap.entity.FacilityCategory;
-import kr.co.bongdamsafety.onlinemap.entity.Request_NewToMap;
 import kr.co.bongdamsafety.onlinemap.repository.AccountRepository;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityCategoryRepository;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityRepository;
-import kr.co.bongdamsafety.onlinemap.repository.Request_NewToMapRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,8 +28,6 @@ public class FacilityService {
     private AccountRepository accountRepository_new; // 이 시설물을 생성한 계정 정보가 저장되는 리포지토리
     @Autowired
     private AccountRepository accountRepository_edit; // 이 시설물을 수정한 계정 정보가 저장되는 리포지토리
-    @Autowired
-    private Request_NewToMapRepository request_NewToMapRepository; // 신규 시설물을, 신규요청을 기반으로 생성할 때, 그 신규요청 정보를 가져오기 위해 사용되는 리포지토리
 
     public List<Facility> findAll() {
         return facilityRepository.findAll(); // 모든 시설물 정보 물러오기
@@ -77,26 +73,6 @@ public class FacilityService {
             }
         }
         facility.setImageUrls(imageUrls); // 이미지 주소들은 시설물 객체에 저장
-        return facilityRepository.save(facility); // 시설물 저장
-    }
-
-    public Facility createByNewToMapId(Long newToMapId) { // 신규요청번호를 기반으로, 지도에 새 마커 생성
-        Request_NewToMap request_newToMap = request_NewToMapRepository.findById(newToMapId).orElse(null); // 매개변수로 들어온 신규시설물추가요청 id를 토대로 신규요청 데이터 가져오기
-        if (request_newToMap == null) {
-            return null; // 해당하는 요청번호가 존재하지 않을 경우 null
-        }
-        // 아래에 있는 것들은, 신규 시설물 요청 정보를 빼와서, 시설물 객체에 넣어주는 과정입니다.
-        Facility facility = new Facility(); // 시설물 객체
-        facility.setFacilityCategory(request_newToMap.getFacilityCategory()); // 시설물 분류
-        facility.setLatitude(request_newToMap.getLatitude()); // 위도
-        facility.setLongitude(request_newToMap.getLongitude()); // 경도
-        facility.setImageUrls(request_newToMap.getImageUrls()); // 요청할때 서버에 저장된 이미지 링크를 여기로 옮기기
-        facility.setContent(request_newToMap.getContent()); // 시설물 설명 가져오기
-        facility.setNote_for_manager(request_newToMap.getNote()); // 요청에 있었던 메모를, 관리자만 볼수있는 메모에 저장
-
-        // 아래에 있는 코드는, 기존에 있었던 요청 데이터를 삭제하는 코드입니다.
-        request_NewToMapRepository.delete(request_newToMap); // 요청 삭제(매개변수로는 엔티티 객체를 넣어줘야 함!!)
-
         return facilityRepository.save(facility); // 시설물 저장
     }
 
