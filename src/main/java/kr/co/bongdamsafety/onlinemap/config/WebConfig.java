@@ -10,6 +10,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/upload/images/**")
-                .addResourceLocations("file:D:/github/backend/src/main/resources/static/upload/images/");
+                .addResourceLocations("file:C:/websites/bongdamsafe1/src/main/resources/static/upload/images/");
+        registry.addResourceHandler("/static/upload/tocenter_images/**")
+                .addResourceLocations("file:C:/websites/bongdamsafe1/src/main/resources/static/upload/tocenter_images/");
     }
 }
