@@ -49,7 +49,7 @@ public class FacilityService {
         return new ArrayList<>(); // 없는 카테고리일 경우 빈 리스트 리턴
     }
 
-    private static final String UPLOAD_DIR = "D:/github/backend/src/main/resources/static/upload/images";
+    private static final String UPLOAD_DIR = "C:/websites/bongdamsafe1/src/main/resources/static/upload/images";
     private static final String RELATIVE_UPLOAD_DIR = "/static/upload/images";
 
     @PostConstruct

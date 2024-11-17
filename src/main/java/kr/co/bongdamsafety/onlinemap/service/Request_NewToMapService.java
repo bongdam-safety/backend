@@ -31,7 +31,7 @@ public class Request_NewToMapService {
         return request_NewToMapRepository.findById(id).orElse(null);
     }
 
-    private static final String UPLOAD_DIR = "D:/github/backend/src/main/resources/static/upload/images";
+    private static final String UPLOAD_DIR = "C:/websites/bongdamsafe1/src/main/resources/static/upload/images";
     private static final String RELATIVE_UPLOAD_DIR = "/static/upload/images";
 
     @PostConstruct

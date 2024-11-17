@@ -31,7 +31,7 @@ public class Request_EditService {
         return request_EditRepository.findById(id).orElse(null); // id를 받아 해당하는 수정요청 정보 불러오기
     }
 
-    private static final String UPLOAD_DIR = "D:/github/backend/src/main/resources/static/upload/images";
+    private static final String UPLOAD_DIR = "C:/websites/bongdamsafe1/src/main/resources/static/upload/images";
     private static final String RELATIVE_UPLOAD_DIR = "/static/upload/images";
 
     @PostConstruct
