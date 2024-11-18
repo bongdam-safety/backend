@@ -20,9 +20,17 @@ public class UserService {
     }
 
     // 사용자 등록 메소드
-    public void registerUser(UserDto dto) { // username 대신 email 사용
-        User user = dto.toEntity(); // UserDto 객체를 User 객체로 변환
-        this.userRepository.save(user); // User 객체를 데이터베이스에 저장
+    public User registerUser(UserDto userDto) {
+        String encodedPassword = passwordEncoder.encode(userDto.getPassword());
+        User user = new User(
+                userDto.getId(),
+                userDto.getEmail(),
+                encodedPassword,
+                userDto.getName(),
+                userDto.getContent(),
+                userDto.getDate_created()
+        );
+        return userRepository.save(user);
     }
 
     // 사용자 로그인 메소드

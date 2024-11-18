@@ -27,7 +27,7 @@ public class User {
     @Column(nullable = false) // 이 필드는 null이 될 수 없음
     private String name; // 성명
 
-    @Column(nullable = false) // 이 필드는 null이 될 수 없음
+    @Column(nullable = false, length = 4000) // 이 필드는 null이 될 수 없음
     private String content; // 계정 설명
 
     @Column(updatable = false)
