@@ -33,6 +33,8 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'net.sourceforge.tess4j:tess4j:5.13.0'
 	implementation 'net.nurigo:sdk:4.3.0'
+	implementation 'org.springframework.boot:spring-boot-starter-security'  // Spring Security
+	implementation 'org.springframework.security:spring-security-crypto'   // PasswordEncoder 사용을 위한 의존성
 }
 
 tasks.named('test') {
