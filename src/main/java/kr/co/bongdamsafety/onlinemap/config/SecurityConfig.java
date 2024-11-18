@@ -34,7 +34,8 @@ public class SecurityConfig {
                                 "/api/upload",
                                 "/api/send-sms",
                                 "/api/request_Edit",
-                                "/api/request_ToCenter"
+                                "/api/request_ToCenter",
+                                "/api/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
