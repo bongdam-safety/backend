@@ -32,7 +32,7 @@ public class SecurityConfig {
                                 "/api/users/register",
                                 "/api/users/login",
                                 "/api/upload",
-                                "/api/send-mms",
+                                "/api/send-sms",
                                 "/api/request_Edit",
                                 "/api/request_ToCenter"
                         ).permitAll()
