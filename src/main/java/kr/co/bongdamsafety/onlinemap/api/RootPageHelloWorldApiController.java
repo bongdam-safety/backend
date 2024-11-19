@@ -16,7 +16,7 @@ public class RootPageHelloWorldApiController {
     }
 
     // GET
-    @GetMapping("/manager/")
+    @GetMapping("/api/manager")
     public String manager() {
         return "Logged in as manager";
     }
