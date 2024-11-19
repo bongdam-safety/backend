@@ -32,12 +32,14 @@ public class ImageUploadController {
 
         OCRForm OCRresult = OCRService.extractTextfromImage(dest);
 
-        if(OCRresult!=null){
-            String messagetext = String.format("%s님, 송장번호 %s의 택배가 도착하였습니다", OCRresult.getName(), OCRresult.getTrackingnumber());
-            smsService.sendMessage(OCRresult.getPhonenumber(),messagetext);
+        String password = null;
+        if (OCRresult != null) {
+            password = OCRresult.getPhonenumber().substring(OCRresult.getPhonenumber().length() - 4);
+            String messagetext = String.format("%s님, 송장번호 %s의 택배가 도착하였습니다. 비밀번호: %s", OCRresult.getName(), OCRresult.getTrackingnumber(),password);
+            smsService.sendMessage(OCRresult.getPhonenumber(), messagetext);
         }
 
         dest.delete();
-        return ResponseEntity.ok("ocr 및 문자 전송 성공");
+        return ResponseEntity.ok(password);
     }
 }
