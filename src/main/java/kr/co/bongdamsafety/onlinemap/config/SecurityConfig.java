@@ -41,8 +41,6 @@ public class SecurityConfig {
 
                                 // 임시로, 로그인 없이도 모든 api에 접근 가능하도록 설정
                                 "/api/**",
-                                "/api/**/**",
-                                "/api/**/**/**",
                                 "/**",
                                 "**"
                         ).permitAll()
