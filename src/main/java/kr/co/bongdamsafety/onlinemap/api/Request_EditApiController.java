@@ -17,13 +17,13 @@ public class Request_EditApiController {
     Request_EditService request_EditService;
 
     // GET **** 로그인되고 승인된 관리자만 조회가능하도록 해야함 ****
-    @GetMapping("/api/request_Edit") // 모든 수정요청 정보 조회
+    @GetMapping("/api/manager/request_Edit") // 모든 수정요청 정보 조회
     public List<Request_Edit> index(){
         return request_EditService.findAll();
     }
 
     // GET - 단일 수정요청 조회 **** 로그인되고 승인된 관리자만 조회가능하도록 해야함 ****
-    @GetMapping("/api/request_Edit/{id}") // 특정 id의 수정요청 정보 조회
+    @GetMapping("/api/manager/request_Edit/{id}") // 특정 id의 수정요청 정보 조회
     public Request_Edit show(@PathVariable Long id) {
         return request_EditService.findById(id);
     }
@@ -35,8 +35,8 @@ public class Request_EditApiController {
         return request_EditService.create(dto);
     }
 
-    // DELETE
-    @DeleteMapping("api/request_Edit/{id}")
+    // DELETE **** 로그인되고 승인된 관리자만 삭제가능하도록 해야함 ****
+    @DeleteMapping("api/manager/request_Edit/{id}")
     public ResponseEntity<Request_Edit> delete(@PathVariable Long id) {
         return request_EditService.delete(id);
     }

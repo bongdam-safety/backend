@@ -59,10 +59,10 @@ public class Facility {
 
     @ManyToOne
     @JoinColumn(name = "account_id_agreed_new", referencedColumnName = "id")
-    private Account account_agreed_new; // 시설물 추가요청 승인한 관리자
+    private User account_agreed_new; // 시설물 추가요청 승인한 관리자
     @ManyToOne
     @JoinColumn(name = "account_id_agreed_edit", referencedColumnName = "id")
-    private Account account_agreed_edit; // 시설물 장보수정요청 승인한 관리자
+    private User account_agreed_edit; // 시설물 장보수정요청 승인한 관리자
 
     public void patch(Facility facility) { // 기존 데이터에 새 데이터 붙이기 (api)
         if (facility.facilityCategory != null)

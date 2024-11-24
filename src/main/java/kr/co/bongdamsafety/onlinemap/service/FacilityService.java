@@ -4,9 +4,9 @@ import jakarta.annotation.PostConstruct;
 import kr.co.bongdamsafety.onlinemap.dto.FacilityForm;
 import kr.co.bongdamsafety.onlinemap.entity.Facility;
 import kr.co.bongdamsafety.onlinemap.entity.FacilityCategory;
-import kr.co.bongdamsafety.onlinemap.repository.AccountRepository;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityCategoryRepository;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityRepository;
+import kr.co.bongdamsafety.onlinemap.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +25,9 @@ public class FacilityService {
     @Autowired
     private FacilityCategoryRepository facilityCategoryRepository; // 시설물유형 리포지토리
     @Autowired
-    private AccountRepository accountRepository_new; // 이 시설물을 생성한 계정 정보가 저장되는 리포지토리
+    private UserRepository userRepository_new; // 이 시설물을 생성한 계정 정보가 저장되는 리포지토리
     @Autowired
-    private AccountRepository accountRepository_edit; // 이 시설물을 수정한 계정 정보가 저장되는 리포지토리
+    private UserRepository userRepository_edit; // 이 시설물을 수정한 계정 정보가 저장되는 리포지토리
 
     public List<Facility> findAll() {
         return facilityRepository.findAll(); // 모든 시설물 정보 물러오기
@@ -57,7 +57,7 @@ public class FacilityService {
     }
 
     public Facility create(FacilityForm dto) { // 신규 시설물 생성
-        Facility facility = dto.toEntity(facilityCategoryRepository, accountRepository_new, accountRepository_edit);
+        Facility facility = dto.toEntity(facilityCategoryRepository, userRepository_new, userRepository_edit);
 
         List<String> imageUrls = new ArrayList<>(); // 이미지 주소들이 들어가는 리스트
         for (MultipartFile file : dto.getImages()) { // 들어온 이미지파일들이 하나씩 돌아가면서 반복
@@ -77,7 +77,7 @@ public class FacilityService {
     }
 
     public ResponseEntity<Facility> update(Long id, FacilityForm dto) { // 시설물 정보 수정
-        Facility facility = dto.toEntity(facilityCategoryRepository, accountRepository_new, accountRepository_edit);
+        Facility facility = dto.toEntity(facilityCategoryRepository, userRepository_new, userRepository_edit);
 
         Facility target = facilityRepository.findById(id).orElse(null);
 
