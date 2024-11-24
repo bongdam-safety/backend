@@ -35,19 +35,19 @@ public class FacilityApiController {
     }
 
     // POST **** 관리자만 추가 가능하도록 해야함 ****
-    @PostMapping("api/manager/facility") // 신규 시설물 지도에 생성
+    @PostMapping("api/facility") // 신규 시설물 지도에 생성
     public Facility create(@ModelAttribute FacilityForm dto) { // requestbody -> 요청시 본문(body)에 실어보내는 데이터를 create 메서드의 매개변수로 받아올수 있게함
         return facilityService.create(dto);
     }
     
     // PATCH **** 관리자만 수정 가능하도록 해야함 ****
-    @PatchMapping("api/manager/facility/{id}")
+    @PatchMapping("api/facility/{id}")
     public ResponseEntity<Facility> update(@PathVariable Long id, @ModelAttribute FacilityForm dto) {
         return facilityService.update(id, dto);
     }
 
     // DELETE **** 관리자만 삭제 가능하도록 해야함 ****
-    @DeleteMapping("api/manager/facility/{id}")
+    @DeleteMapping("api/facility/{id}")
     public ResponseEntity<Facility> delete(@PathVariable Long id) {
         return facilityService.delete(id);
     }

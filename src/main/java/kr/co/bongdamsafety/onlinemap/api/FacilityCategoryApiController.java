@@ -29,7 +29,7 @@ public class FacilityCategoryApiController {
     }
 
     // POST **** 관리자만 추가 가능하도록 해야함 ****
-    @PostMapping("api/manager/facilityCategory") // 새로운 분류 생성
+    @PostMapping("api/facilityCategory") // 새로운 분류 생성
     public FacilityCategory create(@ModelAttribute FacilityCategoryForm dto) { // form-data 형식으로 온 데이터를 이 메서드의 매개면수로 받아오기
         return facilityCategoryService.create(dto);
     }
