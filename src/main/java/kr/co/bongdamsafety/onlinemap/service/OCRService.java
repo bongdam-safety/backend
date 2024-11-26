@@ -21,21 +21,21 @@ public class OCRService {
 
             Pattern trackpattern = Pattern.compile("\\b\\d{10,12}\\b");
             Matcher trackmatcher = trackpattern.matcher(extractedText);
-            String trackingnumber = trackmatcher.find() ? trackmatcher.group() : "";
+            String trackingnumber = trackmatcher.find() ? trackmatcher.group() : "fail";
 
             Pattern phonepattern = Pattern.compile("\\d{2,3}-\\d{3,4}-\\d{4}");
             Matcher phonematcher = phonepattern.matcher(extractedText);
-            String phoneNumber = phonematcher.find() ? phonematcher.group() : "";
+            String phoneNumber = phonematcher.find() ? phonematcher.group() : "fail";
 
             Pattern namepattern = Pattern.compile("\\b[가-힣]{3}\\b");
             Matcher namematcher = namepattern.matcher(extractedText);
-            String Name = namematcher.find() ? namematcher.group() : "";
+            String Name = namematcher.find() ? namematcher.group() : "fail";
             return new OCRForm(trackingnumber, phoneNumber, Name);
 
         }
         catch (TesseractException e) {
             e.printStackTrace();
-            return new OCRForm("" ,"", "" );
+            return new OCRForm("fail" ,"fail", "fail" );
         }
     }
 }
