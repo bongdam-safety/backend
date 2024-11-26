@@ -26,7 +26,6 @@ public class ImageUploadController {
         try {
             file.transferTo(dest);
         } catch (IOException e) {
-            e.printStackTrace();
             return ResponseEntity.status(500).body("file upload failed");
         }
 
@@ -34,12 +33,14 @@ public class ImageUploadController {
 
         String password = null;
         if (OCRresult != null) {
-            password = OCRresult.getPhonenumber().substring(OCRresult.getPhonenumber().length() - 4);
+            password = OCRresult.getPhonenumber().length() >= 5
+                    ? OCRresult.getPhonenumber().substring(OCRresult.getPhonenumber().length() - 4)
+                    : OCRresult.getPhonenumber();
             String messagetext = String.format("%s님, 송장번호 %s의 택배가 도착하였습니다. 비밀번호: %s", OCRresult.getName(), OCRresult.getTrackingnumber(),password);
             smsService.sendMessage(OCRresult.getPhonenumber(), messagetext);
         }
 
-        dest.delete();
+        //dest.delete();
         return ResponseEntity.ok(password);
     }
 }
