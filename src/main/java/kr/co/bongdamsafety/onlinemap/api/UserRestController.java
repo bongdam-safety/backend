@@ -20,6 +20,7 @@ public class UserRestController {
         this.userService = userService; // 주입된 UserService를 필드에 저장
     }
 
+    /*
     // POST 요청: 사용자 등록을 처리하는 메소드입니다.
     @PostMapping("/register") // "/api/users/register" 경로에 대한 POST 요청을 처리
     public ResponseEntity<String> registerUser(@ModelAttribute UserDto userDto) {
@@ -33,6 +34,8 @@ public class UserRestController {
             return new ResponseEntity<>("가입에 실패하였습니다.", HttpStatus.BAD_REQUEST);
         }
     }
+
+     */
 
     // POST 요청: 사용자 로그인을 처리하는 메소드입니다.
     @PostMapping("/login") // "/api/users/login" 경로에 대한 POST 요청을 처리
