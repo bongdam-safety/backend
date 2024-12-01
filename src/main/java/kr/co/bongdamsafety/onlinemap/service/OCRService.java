@@ -1,16 +1,10 @@
 package kr.co.bongdamsafety.onlinemap.service;
 
-import kr.co.bongdamsafety.onlinemap.dto.OCRForm;
-import net.sourceforge.tess4j.Tesseract;
-import net.sourceforge.tess4j.TesseractException;
 import org.springframework.stereotype.Service;
-
-import java.io.File;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Service
 public class OCRService {
+    /*
     public static OCRForm extractTextfromImage(File imagefile) {
         Tesseract tesseract = new Tesseract();
         String tessdataPath = new File("src/main/resources/tessdata").getAbsolutePath();
@@ -38,4 +32,6 @@ public class OCRService {
             return new OCRForm("fail" ,"fail", "fail" );
         }
     }
+
+     */
 }

@@ -1,24 +1,14 @@
 package kr.co.bongdamsafety.onlinemap.api;
 
-import kr.co.bongdamsafety.onlinemap.dto.OCRForm;
-import kr.co.bongdamsafety.onlinemap.service.OCRService;
-import kr.co.bongdamsafety.onlinemap.service.SMSService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-import java.io.File;
-import java.io.IOException;
-
-@RestController
+//@RestController
 
 public class ImageUploadController {
+    /*
     @Autowired
     private OCRService ocrService;
     @Autowired
     private SMSService smsService;
+
     @PostMapping("api/upload")
     public ResponseEntity<String> handleImageUpload(@RequestParam("file") MultipartFile file) {
         String filepath = new File("src/main/resources/uploads/").getAbsolutePath() + "/" + file.getOriginalFilename();
@@ -43,4 +33,6 @@ public class ImageUploadController {
         //dest.delete();
         return ResponseEntity.ok(password);
     }
+
+     */
 }
