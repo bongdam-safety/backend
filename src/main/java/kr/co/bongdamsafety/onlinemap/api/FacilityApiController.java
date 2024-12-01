@@ -1,12 +1,12 @@
 package kr.co.bongdamsafety.onlinemap.api;
 
-import kr.co.bongdamsafety.onlinemap.dto.FacilityForm;
 import kr.co.bongdamsafety.onlinemap.entity.Facility;
 import kr.co.bongdamsafety.onlinemap.service.FacilityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -34,6 +34,7 @@ public class FacilityApiController {
         return facilityService.findByCategory(id);
     }
 
+    /*
     // POST **** 관리자만 추가 가능하도록 해야함 ****
     @PostMapping("api/facility") // 신규 시설물 지도에 생성
     public Facility create(@ModelAttribute FacilityForm dto) { // requestbody -> 요청시 본문(body)에 실어보내는 데이터를 create 메서드의 매개변수로 받아올수 있게함
@@ -51,4 +52,6 @@ public class FacilityApiController {
     public ResponseEntity<Facility> delete(@PathVariable Long id) {
         return facilityService.delete(id);
     }
+
+     */
 }
