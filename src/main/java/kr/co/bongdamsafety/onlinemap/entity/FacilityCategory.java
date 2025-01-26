@@ -22,22 +22,4 @@ public class FacilityCategory {
     private String categoryName; // 시설물 분류명(CCTV, 비상벨 등)
     @Column(nullable = false)
     private boolean visible; // 지도상에 이 카테고리의 시설물을 표시할지 여부
-    @Column(length = 4000)
-    private String note; // 관리자만 볼 수 있는 메모
-
-    @Column(updatable = false)
-    private Timestamp date_created; // 시설물유형 생성일
-    @PrePersist // 저장하기 전에 실행
-    public void onCreate() {
-        this.date_created = new Timestamp(System.currentTimeMillis()); // 날짜 자동생성
-    }
-
-    @Column
-    private Timestamp date_edited; // 시설물유형 정보수정일
-    @PreUpdate // 저장하기 전에 실행
-    public void onUpdate() {
-        this.date_edited = new Timestamp(System.currentTimeMillis()); // 날짜 자동생성
-    }
-
-
 }

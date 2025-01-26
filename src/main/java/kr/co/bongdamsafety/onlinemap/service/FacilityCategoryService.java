@@ -20,9 +20,4 @@ public class FacilityCategoryService {
     public FacilityCategory findById(Long id) { // 시설물번호를 토대로 분류 정보 불러오기
         return facilityCategoryRepository.findById(id).orElse(null);
     }
-
-    public FacilityCategory create(FacilityCategoryForm dto) { // 신규 분류 생성
-        FacilityCategory facilityCategory = dto.toEntity();
-        return facilityCategoryRepository.save(facilityCategory);
-    }
 }

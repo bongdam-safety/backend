@@ -11,14 +11,6 @@ public class WebConfig implements WebMvcConfigurer {
     public WebConfig() {
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/upload/images/**")
-                .addResourceLocations("file:C:/websites/bongdamsafe1/src/main/resources/static/upload/images/");
-        registry.addResourceHandler("/static/upload/tocenter_images/**")
-                .addResourceLocations("file:C:/websites/bongdamsafe1/src/main/resources/static/upload/tocenter_images/");
-    }
-
     // CORS(Cross-Origin Resource Sharing) 설정을 추가하는 메소드
     public void addCorsMappings(CorsRegistry registry) {
         // 모든 경로에 대해 CORS를 설정합니다.
