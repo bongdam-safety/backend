@@ -1,6 +1,5 @@
 package kr.co.bongdamsafety.onlinemap.service;
 
-import kr.co.bongdamsafety.onlinemap.dto.FacilityCategoryForm;
 import kr.co.bongdamsafety.onlinemap.entity.FacilityCategory;
 import kr.co.bongdamsafety.onlinemap.repository.FacilityCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,11 @@ import java.util.List;
 
 @Service
 public class FacilityCategoryService {
+    private final FacilityCategoryRepository facilityCategoryRepository; // 시설물유형 리포지토리
     @Autowired
-    private FacilityCategoryRepository facilityCategoryRepository; // 시설물유형 리포지토리
+    public FacilityCategoryService(FacilityCategoryRepository facilityCategoryRepository) {
+        this.facilityCategoryRepository = facilityCategoryRepository;
+    }
 
     public List<FacilityCategory> findAll() { // 모든 분류 다 불러오기
         return facilityCategoryRepository.findAll();

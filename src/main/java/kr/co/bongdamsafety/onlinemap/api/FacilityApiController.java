@@ -13,8 +13,11 @@ import java.util.List;
 @Slf4j
 @RestController
 public class FacilityApiController {
+    private final FacilityService facilityService;
     @Autowired
-    private FacilityService facilityService;
+    public FacilityApiController(FacilityService facilityService) {
+        this.facilityService = facilityService;
+    }
 
     // GET
     @GetMapping("/api/facility") // 모든 시설물 정보 조회

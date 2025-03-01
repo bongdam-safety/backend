@@ -12,10 +12,13 @@ import java.util.List;
 
 @Service
 public class FacilityService {
+    private final FacilityRepository facilityRepository; // 시설물 리포지토리
+    private final FacilityCategoryRepository facilityCategoryRepository; // 시설물유형 리포지토리
     @Autowired
-    private FacilityRepository facilityRepository; // 시설물 리포지토리
-    @Autowired
-    private FacilityCategoryRepository facilityCategoryRepository; // 시설물유형 리포지토리
+    public FacilityService(FacilityRepository facilityRepository, FacilityCategoryRepository facilityCategoryRepository) {
+        this.facilityRepository = facilityRepository;
+        this.facilityCategoryRepository = facilityCategoryRepository;
+    }
 
     public List<Facility> findAll() {
         return facilityRepository.findAll(); // 모든 시설물 정보 물러오기
