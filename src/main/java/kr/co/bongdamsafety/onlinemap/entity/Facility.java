@@ -2,8 +2,6 @@ package kr.co.bongdamsafety.onlinemap.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.sql.Timestamp;
 import java.util.List;
 
 @AllArgsConstructor
@@ -31,10 +29,4 @@ public class Facility {
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> imageUrls;
-    public List<String> getImageUrls() {
-        return imageUrls;
-    }
-    public void setImageUrls(List<String> imageUrls) {
-        this.imageUrls = imageUrls;
-    }
 }

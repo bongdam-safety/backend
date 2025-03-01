@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.sql.Timestamp;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
